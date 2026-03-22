@@ -32,15 +32,15 @@ OUTPUT_DIR  = Path("../data/batch_su2_cases")          # all case folders go her
 
 AOA_VALUES = [
     # Dense sampling around regime transition (your high-RMSE zone)
-    1
-    # 10.25, 10.5, 10.75,
-    # 11.25, 11.5, 11.75,
-    # 12.25, 12.5, 12.75,
-    # 13.25, 13.5, 13.75,
+    # 1,
+    10.25, 10.5, 10.75,
+    11.25, 11.5, 11.75,
+    12.25, 12.5, 12.75,
+    13.25, 13.5, 13.75,
     # Extra boundary coverage (your other high-RMSE zone)
-    # -1.0, -0.5, 0.5,
+    -1.0, -0.5, 0.5,
     # Mid-range extras if you want even denser coverage
-    # 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5,
+    1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5,
 ]
 
 # Parallel workers — set to number of CPU cores you want to use.
@@ -112,7 +112,7 @@ def prepare_case(aoa: float) -> tuple:
     cfg = set_value(cfg, "AOA", str(aoa))
     cfg = set_value(cfg, "MUSCL_FLOW", "NO")
     cfg = set_value(cfg, "MUSCL_ADJFLOW", "NO")
-    cfg = set_value(cfg, "ITER", "100")
+    cfg = set_value(cfg, "ITER", "5000")
 
     # Rename outputs so cases don't overwrite each other
     cfg = set_value(cfg, "SURFACE_FILENAME",  f"surface_flow")
