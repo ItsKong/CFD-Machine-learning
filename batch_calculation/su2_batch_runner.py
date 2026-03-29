@@ -38,7 +38,8 @@ AOA_VALUES = [
     12.25, 12.5, 12.75,
     13.25, 13.5, 13.75,
     # Extra boundary coverage (your other high-RMSE zone)
-    -1.0, -0.5, 0.5,
+    # -1.0, -0.5, 
+    0.5,
     # Mid-range extras if you want even denser coverage
     1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5,
 ]
