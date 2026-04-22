@@ -1,2 +1,10 @@
-data
-.vscode
+data/
+archive/
+.vscode/
+.venv/
+.cache/
+__pycache__/
+*.pyc
+*.zip
+*.ZIP
+.DS_Store

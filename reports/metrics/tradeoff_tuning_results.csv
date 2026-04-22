@@ -1,0 +1,4 @@
+model,best_score,best_rmse,best_params,n_iter,cv_splits,scoring
+Gradient boosting tuned,-1.4398548358077004,1.4398548358077004,"{""estimator__learning_rate"": 0.1, ""estimator__max_depth"": 4, ""estimator__min_samples_leaf"": 4, ""estimator__n_estimators"": 160, ""estimator__subsample"": 0.9}",24,5,neg_root_mean_squared_error
+Random forest tuned,-1.5330868841005358,1.5330868841005358,"{""max_depth"": 16, ""max_features"": 0.8, ""min_samples_leaf"": 1, ""min_samples_split"": 2, ""n_estimators"": 300}",24,5,neg_root_mean_squared_error
+Polynomial ridge tuned,-3.5764872523210314,3.5764872523210314,"{""polynomialfeatures__degree"": 3, ""ridge__alpha"": 0.1}",18,5,neg_root_mean_squared_error
