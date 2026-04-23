@@ -3,7 +3,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from cfd_ml.paths import RAE2822_CASE_DIR, TRADEOFF_DATA_PATH
+from cfd_ml.paths import RAE2822_CASE_DIR
 
 
 def load_rae2822_surface_data(data_dir: Path = RAE2822_CASE_DIR) -> pd.DataFrame:
@@ -28,7 +28,3 @@ def load_rae2822_surface_data(data_dir: Path = RAE2822_CASE_DIR) -> pd.DataFrame
         raise FileNotFoundError(f"No surface_flow.csv files found under {data_dir}")
 
     return pd.concat(frames, ignore_index=True)
-
-
-def load_tradeoff_data(path: Path = TRADEOFF_DATA_PATH) -> pd.DataFrame:
-    return pd.read_csv(path).drop(columns=["Unnamed: 0"], errors="ignore")

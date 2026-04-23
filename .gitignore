@@ -5,6 +5,7 @@ archive/
 .cache/
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
 *.zip
 *.ZIP
 .DS_Store

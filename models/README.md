@@ -2,7 +2,5 @@
 
 Trained artifacts live here instead of the repository root.
 
-```text
-cp/        RAE2822 surface Cp neural-network model and scalers
-tradeoff/  trained N2412 CL/CD response model and metadata
-```
+For the final Cp project flow, the main deliverables are notebook outputs and
+comparison tables under `reports/metrics/` rather than tracked model binaries.
