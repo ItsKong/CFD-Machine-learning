@@ -1,2 +1,2 @@
 reference_model,neural_network_RMSE,random_forest_RMSE,RMSE_gap_NN_minus_RF,NN_RMSE_percent_higher,winner
-Random forest tuned,0.09763659595278555,0.062083174793556,0.035553421159229555,57.26740180001211,Random forest tuned
+Random forest tuned,0.06048508818173549,0.062083174793556,-0.0015980866118205095,-2.5741058139094775,Neural network

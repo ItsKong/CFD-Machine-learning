@@ -37,21 +37,17 @@ OUTPUT_DIR  = PROJECT_ROOT / "data" / "batch_su2_cases"  # all case folders go h
 AOA_VALUES = [
     # Dense sampling around regime transition (your high-RMSE zone)
     # 1,
-    10.25, 10.5, 10.75,
-    11.25, 11.5, 11.75,
-    12.25, 12.5, 12.75,
-    13.25, 13.5, 13.75,
-    # Extra boundary coverage (your other high-RMSE zone)
-    # -1.0, -0.5, 
-    0.5,
-    # Mid-range extras if you want even denser coverage
-    1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5,
+    x for x in range(0, 21, 1)
+]
+
+MACH_NUMBERS = [
+    0.68, 0.70, 0.72, 0.74, 0.76, 0.78
 ]
 
 # Parallel workers — set to number of CPU cores you want to use.
 # Each SU2 job runs single-threaded, so MAX_WORKERS = number of cores is fine.
 # If you use MPI per job (e.g. mpirun -n 4), set MAX_WORKERS = total_cores / 4
-MAX_WORKERS = 4
+MAX_WORKERS = 8
 
 # MPI command — set to None for single-threaded, or e.g. ["mpirun", "-n", "4"]
 MPI_CMD = None
@@ -105,16 +101,17 @@ def set_value(cfg: str, key: str, value: str) -> str:
         raise KeyError(f"Key '{key}' not found in config")
     return new_cfg
 
-def prepare_case(aoa: float) -> tuple:
+def prepare_case(aoa: float, mach_number: float) -> tuple:
     """Create case directory, write patched config, symlink mesh."""
-    tag      = f"{aoa:.2f}"
-    case_dir = OUTPUT_DIR / f"{tag}"
+    tag      = f"aoa_{aoa:.2f}_mach_{mach_number:.2f}"
+    case_dir = OUTPUT_DIR / tag
     case_dir.mkdir(parents=True, exist_ok=True)
 
     cfg = BASE_CONFIG.read_text()
 
     # Only the AoA changes — everything else stays identical to your base config
     cfg = set_value(cfg, "AOA", str(aoa))
+    cfg = set_value(cfg, "MACH_NUMBER", str(mach_number))
     cfg = set_value(cfg, "MUSCL_FLOW", "NO")
     cfg = set_value(cfg, "MUSCL_ADJFLOW", "NO")
     cfg = set_value(cfg, "ITER", "5000")
@@ -143,8 +140,8 @@ def prepare_case(aoa: float) -> tuple:
 
 def run_case(args) -> dict:
     """Run SU2_CFD for one case, return result dict."""
-    aoa, case_dir = args
-    print(f"  [START]  AoA = {aoa:+7.2f} deg  ->  {case_dir.name}")
+    aoa, mach_number, case_dir = args
+    print(f"  [START]  AoA = {aoa:+7.2f} deg  Mach = {mach_number:.2f}  ->  {case_dir.name}")
 
     cmd = ([*MPI_CMD] if MPI_CMD else []) + [SU2_BIN, "config.cfg"]
 
@@ -153,7 +150,7 @@ def run_case(args) -> dict:
 
     ok     = proc.returncode == 0
     status = "OK" if ok else f"FAILED ({proc.returncode})"
-    print(f"  [{status:^12}]  AoA = {aoa:+7.2f} deg")
+    print(f"  [{status:^12}]  AoA = {aoa:+7.2f} deg  Mach = {mach_number:.2f}")
 
     # Find the surface CSV SU2 wrote (name depends on SU2 version)
     # Convert vtu file
@@ -166,15 +163,16 @@ def run_case(args) -> dict:
     csv_candidates = list(case_dir.glob("surface_flow.csv"))
     csv_path = str(csv_candidates[0]) if csv_candidates else "not found"
 
-    return {"aoa": aoa, "status": status, "dir": str(case_dir),
+    return {"aoa": aoa, "mach": mach_number, "status": status, "dir": str(case_dir),
             "csv": csv_path, "log": str(case_dir / "run.log")}
 
 def main():
     print("\nSU2 Batch Runner — RAE2822 SA turbulence")
     print(f"  Config      : {BASE_CONFIG}")
     print(f"  Mesh        : {MESH_FILE}")
-    print(f"  New cases   : {len(AOA_VALUES)}")
-    print(f"  AoA range   : {min(AOA_VALUES):.2f} -> {max(AOA_VALUES):.2f} deg")
+    print(f"  AoA values  : {len(AOA_VALUES)}  ({min(AOA_VALUES):.2f} -> {max(AOA_VALUES):.2f} deg)")
+    print(f"  Mach values : {len(MACH_NUMBERS)}  ({min(MACH_NUMBERS):.2f} -> {max(MACH_NUMBERS):.2f})")
+    print(f"  Total cases : {len(AOA_VALUES) * len(MACH_NUMBERS)}")
     print(f"  Workers     : {MAX_WORKERS}")
     print(f"  Output dir  : {OUTPUT_DIR}\n")
 
@@ -185,13 +183,17 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     print("Preparing case directories...")
-    cases = [prepare_case(aoa) for aoa in sorted(AOA_VALUES)]
-    print(f"  {len(cases)} directories ready.\n")
+    cases_with_mach = []
+    for aoa in sorted(AOA_VALUES):
+        for mach in sorted(MACH_NUMBERS):
+            _, case_dir = prepare_case(aoa, mach)
+            cases_with_mach.append((aoa, mach, case_dir))
+    print(f"  {len(cases_with_mach)} directories ready.\n")
 
     print(f"Running SU2_CFD with up to {MAX_WORKERS} parallel workers...\n")
     results = []
     with concurrent.futures.ProcessPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        for r in pool.map(run_case, cases):
+        for r in pool.map(run_case, cases_with_mach):
             results.append(r)
 
     ok_cases     = [r for r in results if r["status"] == "OK"]
@@ -202,15 +204,15 @@ def main():
     if failed_cases:
         print("\n  Failed cases (check run.log for details):")
         for r in failed_cases:
-            print(f"    AoA = {r['aoa']:+.2f} deg  ->  {r['log']}")
+            print(f"    AoA = {r['aoa']:+.2f} deg  Mach = {r['mach']:.2f}  ->  {r['log']}")
     print(f"{'─'*55}\n")
 
     # Write summary CSV — useful for quickly loading all new surface files
     summary = OUTPUT_DIR / "batch_summary.csv"
     with open(summary, "w") as f:
-        f.write("AoA,Status,SurfaceCSV,Log\n")
-        for r in sorted(results, key=lambda x: x["aoa"]):
-            f.write(f"{r['aoa']},{r['status']},{r['csv']},{r['log']}\n")
+        f.write("AoA,Mach,Status,SurfaceCSV,Log\n")
+        for r in sorted(results, key=lambda x: (x["aoa"], x["mach"])):
+            f.write(f"{r['aoa']},{r['mach']},{r['status']},{r['csv']},{r['log']}\n")
     print(f"Summary written to: {summary}")
     print("Surface CSVs are in their respective case subdirectories.\n")
     print("Tip: load them with pandas like your existing data —")
