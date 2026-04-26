@@ -14,20 +14,24 @@ from typing import Optional
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL_CASE_DIR = PROJECT_ROOT / "data" / "rae2822" / "angvar_sa"
 DEFAULT_TEMPLATE_CASE = ORIGINAL_CASE_DIR / "10"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "data" / "rae2822_dense_su2" / "angvar_sa"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "data" / "rae2822_aoa_mach_su2" / "extended_sa"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Create a denser RAE2822 AoA dataset by copying the Kaggle SU2 "
-            "case setup and changing only the angle of attack plus the minimum "
-            "compatibility edits needed by newer SU2 versions."
+            "Create an RAE2822 AoA x Mach dataset by copying the Kaggle SU2 "
+            "case setup and changing the angle of attack, Mach number, and "
+            "only the minimum compatibility edits needed by newer SU2 versions."
         )
     )
     parser.add_argument("--aoa-start", type=float, default=0.0)
     parser.add_argument("--aoa-stop", type=float, default=20.0)
     parser.add_argument("--aoa-step", type=float, default=0.5)
+    parser.add_argument("--mach-start", type=float, default=0.68)
+    parser.add_argument("--mach-stop", type=float, default=0.78)
+    parser.add_argument("--mach-step", type=float, default=0.02)
+
     parser.add_argument(
         "--template-case",
         type=Path,
@@ -105,8 +109,33 @@ def aoa_values(start: float, stop: float, step: float) -> list[float]:
     return values
 
 
+def mach_values(start: float, stop: float, step: float) -> list[float]:
+    if step <= 0:
+        raise ValueError("--mach-step must be positive")
+
+    values = []
+    value = start
+    epsilon = step / 1000.0
+    while value <= stop + epsilon:
+        values.append(round(value, 10))
+        value += step
+    return values
+
+
+def build_case_grid(aoa_list: list[float], mach_list: list[float]) -> list[tuple[float, float]]:
+    return [(mach, aoa) for mach in mach_list for aoa in aoa_list]
+
+
+def mach_folder_name(mach: float) -> str:
+    return f"mach_{mach:.2f}"
+
+
 def aoa_folder_name(aoa: float) -> str:
-    return f"{aoa:g}"
+    return f"aoa_{aoa:g}"
+
+
+def case_label(mach: float, aoa: float) -> str:
+    return f"{mach_folder_name(mach)}/{aoa_folder_name(aoa)}"
 
 
 def set_value(cfg: str, key: str, value: str) -> str:
@@ -131,6 +160,7 @@ def set_or_append_value(cfg: str, key: str, value: str) -> str:
 
 
 def prepare_case(
+    mach: float,
     aoa: float,
     template_case: Path,
     output_dir: Path,
@@ -145,13 +175,15 @@ def prepare_case(
     if not template_mesh.exists():
         raise FileNotFoundError(template_mesh)
 
-    case_dir = output_dir / aoa_folder_name(aoa)
+    case_dir = output_dir / mach_folder_name(mach) / aoa_folder_name(aoa)
+
     if case_dir.exists() and allow_overwrite:
         shutil.rmtree(case_dir)
     case_dir.mkdir(parents=True, exist_ok=True)
 
     cfg = template_cfg.read_text()
     cfg = set_value(cfg, "AOA", str(aoa))
+    cfg = set_value(cfg, "MACH_NUMBER", f"{mach:.2f}")
     cfg = set_or_append_value(cfg, "VOLUME_OUTPUT", "(COORDINATES, SOLUTION, PRIMITIVE)")
 
     if mode == "v84_compatible":
@@ -172,6 +204,18 @@ def prepare_case(
             shutil.copy(template_mesh, mesh_dst)
 
     return case_dir
+
+
+def write_case_metadata(case_dir: Path, mach: float, aoa: float, status: str, **extra: object) -> None:
+    metadata = {
+        "case": case_label(mach, aoa),
+        "case_dir": str(case_dir),
+        "AoA": aoa,
+        "Freestream_Mach": mach,
+        "status": status,
+    }
+    metadata.update(extra)
+    (case_dir / "case_metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
 
 
 def parse_ascii_vtu_point_data(vtu_path: Path) -> dict[str, object]:
@@ -312,16 +356,21 @@ def has_kaggle_like_surface_csv(surface_csv: Path) -> bool:
     return "Pressure_Coefficient" in columns and "Pressure" in columns
 
 
-def run_case(case_dir: Path, su2_bin: str, allow_overwrite: bool) -> dict[str, object]:
+def run_case(case_dir: Path, mach: float, aoa: float, su2_bin: str, allow_overwrite: bool) -> dict[str, object]:
     surface_csv = case_dir / "surface_flow.csv"
+    label = case_label(mach, aoa)
     if surface_csv.exists() and not allow_overwrite:
-        return {
-            "case": case_dir.name,
+        row = {
+            "case": label,
             "case_dir": str(case_dir),
+            "AoA": aoa,
+            "Freestream_Mach": mach,
             "status": "SKIPPED_EXISTS",
             "surface_flow_csv": True,
             "kaggle_like_surface_csv": has_kaggle_like_surface_csv(surface_csv),
         }
+        write_case_metadata(case_dir, mach, aoa, row["status"], surface_flow_csv=True, kaggle_like_surface_csv=row["kaggle_like_surface_csv"])
+        return row
 
     with (case_dir / "run.log").open("w") as log:
         proc = subprocess.run(
@@ -349,71 +398,114 @@ def run_case(case_dir: Path, su2_bin: str, allow_overwrite: bool) -> dict[str, o
         status = "FAILED_POSTPROCESS"
     else:
         status = "OK"
-    return {
-        "case": case_dir.name,
+    row = {
+        "case": label,
         "case_dir": str(case_dir),
+        "AoA": aoa,
+        "Freestream_Mach": mach,
         "status": status,
         "surface_flow_csv": surface_csv.exists(),
         "normalized_from_vtu": normalized,
         "kaggle_like_surface_csv": kaggle_like,
         "postprocess_error": postprocess_error,
     }
+    write_case_metadata(
+        case_dir,
+        mach,
+        aoa,
+        status,
+        surface_flow_csv=row["surface_flow_csv"],
+        normalized_from_vtu=normalized,
+        kaggle_like_surface_csv=kaggle_like,
+        postprocess_error=postprocess_error,
+    )
+    return row
 
 
-def write_metadata(args: argparse.Namespace, su2_bin: Optional[str], values: list[float]) -> None:
+def write_metadata(
+    args: argparse.Namespace,
+    su2_bin: Optional[str],
+    aoa_list: list[float],
+    mach_list: list[float],
+    case_count: int,
+) -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metadata = {
-        "dataset": "rae2822_dense_su2",
+        "dataset": "rae2822_aoa_mach_su2",
         "source_template_case": str(args.template_case),
         "output_dir": str(args.output_dir),
         "aoa_start": args.aoa_start,
         "aoa_stop": args.aoa_stop,
         "aoa_step": args.aoa_step,
-        "aoa_count": len(values),
+        "aoa_values": aoa_list,
+        "aoa_count": len(aoa_list),
+        "mach_start": args.mach_start,
+        "mach_stop": args.mach_stop,
+        "mach_step": args.mach_step,
+        "mach_values": mach_list,
+        "mach_count": len(mach_list),
+        "case_count": case_count,
         "mode": args.mode,
         "max_iter_override": args.max_iter,
         "su2_bin": su2_bin,
         "notes": [
             "Cases copy the Kaggle RAE2822 config and mesh.",
-            "AOA is changed for each generated case.",
+            "AOA and MACH_NUMBER are changed for each generated case.",
+            "Case folders use nested layout: mach_xx/aoa_xx.",
             "VOLUME_OUTPUT is set to COORDINATES, SOLUTION, PRIMITIVE so surface_flow.csv keeps Kaggle-like Cp and primitive columns.",
             "SU2 v8.4 writes conservative-only SURFACE_CSV for this case, so the script rewrites surface_flow.csv from SURFACE_PARAVIEW_ASCII.",
             "v84_compatible mode sets MUSCL_FLOW=NO and MUSCL_ADJFLOW=NO because SU2 v8.4 rejects JST+MUSCL.",
             "Keep this dataset separate from Kaggle until overlap cases are compared.",
         ],
     }
-    (args.output_dir.parent / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
+    (args.output_dir / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
 
 
 def main() -> int:
     args = parse_args()
-    values = aoa_values(args.aoa_start, args.aoa_stop, args.aoa_step)
+    aoa_list = aoa_values(args.aoa_start, args.aoa_stop, args.aoa_step)
+    mach_list = mach_values(args.mach_start, args.mach_stop, args.mach_step)
+    case_grid = build_case_grid(aoa_list, mach_list)
+
     su2_bin = find_su2_bin(args.su2_bin)
 
     if not args.prepare_only and not su2_bin:
         raise FileNotFoundError("Could not find SU2_CFD. Set SU2_BIN or pass --su2-bin.")
 
     print("Dense RAE2822 SU2 dataset")
-    print(f"  AoA count: {len(values)}")
-    print(f"  AoA range: {values[0]:g} to {values[-1]:g} step {args.aoa_step:g}")
+    print(f"  AoA count: {len(aoa_list)}")
+    print(f"  AoA range: {aoa_list[0]:g} to {aoa_list[-1]:g} step {args.aoa_step:g}")
+    print(f"  Mach count: {len(mach_list)}")
+    print(f"  Mach range: {mach_list[0]:.2f} to {mach_list[-1]:.2f} step {args.mach_step:.2f}")
+    print(f"  Total cases: {len(case_grid)}")
     print(f"  Template: {args.template_case}")
     print(f"  Output: {args.output_dir}")
     print(f"  Mode: {args.mode}")
     print(f"  SU2_CFD: {su2_bin or 'not needed for --prepare-only'}")
     print()
 
-    case_dirs = [
-        prepare_case(
-            aoa,
-            args.template_case,
-            args.output_dir,
-            args.mode,
-            args.max_iter,
-            args.allow_overwrite,
-        )
-        for aoa in values
+
+    case_records = [
+        {
+            "AoA": aoa,
+            "Freestream_Mach": mach,
+            "case_dir": prepare_case(
+                mach,
+                aoa,
+                args.template_case,
+                args.output_dir,
+                args.mode,
+                args.max_iter,
+                args.allow_overwrite,
+            ),
+        }
+        for mach, aoa in case_grid
     ]
-    write_metadata(args, su2_bin, values)
+
+    for record in case_records:
+        write_case_metadata(record["case_dir"], record["Freestream_Mach"], record["AoA"], "PREPARED")
+
+    write_metadata(args, su2_bin, aoa_list, mach_list, len(case_records))
 
     if args.prepare_only:
         print("Prepared case folders only. No SU2 runs were launched.")
@@ -423,16 +515,23 @@ def main() -> int:
     rows = []
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as executor:
         future_to_case = {
-            executor.submit(run_case, case_dir, su2_bin, args.allow_overwrite): case_dir
-            for case_dir in case_dirs
+            executor.submit(
+                run_case,
+                record["case_dir"],
+                record["Freestream_Mach"],
+                record["AoA"],
+                su2_bin,
+                args.allow_overwrite,
+            ): record
+            for record in case_records
         }
         for future in as_completed(future_to_case):
             row = future.result()
             rows.append(row)
-            print(f"{row['case']:>6}: {row['status']}")
+            print(f"{row['case']}: {row['status']}")
 
-    rows.sort(key=lambda row: float(row["case"]))
-    summary_path = args.output_dir.parent / "generation_summary.csv"
+    rows.sort(key=lambda row: (float(row["Freestream_Mach"]), float(row["AoA"])))
+    summary_path = args.output_dir / "generation_summary.csv"
     try:
         import pandas as pd
 
