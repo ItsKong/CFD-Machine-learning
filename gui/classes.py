@@ -4,11 +4,7 @@ os.environ.setdefault("TK_SILENCE_DEPRECATION", "1")
 
 import tkinter as tk
 from tkinter import messagebox
-
-try:
-    from .cfd_model import CP_Predict_Model
-except ImportError:
-    from cfd_model import CP_Predict_Model
+from cfd_model_rdfr import CP_Predict_Model_RDFR
 
 
 class App(tk.Tk):
@@ -37,7 +33,7 @@ class App(tk.Tk):
     def load_model(self):
         self.update_idletasks()
         try:
-            self.cp_model = CP_Predict_Model()
+            self.cp_model = CP_Predict_Model_RDFR()
         except Exception as exc:
             self.status_text.set("Model failed to load")
             messagebox.showerror("Model failed to load", str(exc))
@@ -47,7 +43,7 @@ class App(tk.Tk):
         self.status_text.set("Model ready")
         self.handle_submit(self.menu.get_aoa())
 
-    def handle_submit(self, aoa_float):
+    def handle_submit(self, aoa_float, mach_float):
         if self.cp_model is None:
             self.status_text.set("Model is still loading...")
             return
@@ -55,7 +51,7 @@ class App(tk.Tk):
         self.status_text.set("Predicting...")
         self.update_idletasks()
         try:
-            result = self.cp_model.predict_airfoil_cp(aoa_float)
+            result = self.cp_model.predict_airfoil_cp(aoa_float, mach_float)
         except Exception as exc:
             self.status_text.set("Prediction failed")
             messagebox.showerror("Prediction failed", str(exc))
@@ -75,20 +71,34 @@ class Menu(tk.Frame):
         self.create_input()
 
     def create_input(self):
+        # 1. Variables for both inputs
         self.aoa_text = tk.StringVar(value="0.0")
+        self.mach_text = tk.StringVar(value="0.75")  # Default Mach value
 
+        # Labels
         title_label = tk.Label(
             self, text="CFD Predictor", bg="#ededed", fg="#111111",
             font=("Arial", 18, "bold"))
         subtitle_label = tk.Label(
             self, text="RAE2822 Cp prediction", bg="#ededed", fg="#444444",
             font=("Arial", 11))
+        
+        # AoA Widgets
         aoa_label = tk.Label(
             self, text="Angle of Attack", bg="#ededed", fg="#111111",
             font=("Arial", 12))
         aoa_entry = tk.Entry(
             self, textvariable=self.aoa_text, font=("Arial", 14), width=10,
             relief="solid", bd=1)
+            
+        # 2. Mach Widgets
+        mach_label = tk.Label(
+            self, text="Mach Number", bg="#ededed", fg="#111111",
+            font=("Arial", 12))
+        mach_entry = tk.Entry(
+            self, textvariable=self.mach_text, font=("Arial", 14), width=10,
+            relief="solid", bd=1)
+
         self.submit_button = tk.Button(
             self, text="Submit", state="disabled", font=("Arial", 12),
             relief="solid", bd=1, command=self.submit)
@@ -96,17 +106,30 @@ class Menu(tk.Frame):
             self, textvariable=self.status_text, bg="#ededed", fg="#333333",
             font=("Arial", 11), justify="left", wraplength=190)
 
+        # Packing (slightly adjusted pady to fit the new input)
         title_label.pack(anchor="w", padx=18, pady=(20, 2))
-        subtitle_label.pack(anchor="w", padx=18, pady=(0, 28))
-        aoa_label.pack(anchor="w", padx=18, pady=(0, 8))
+        subtitle_label.pack(anchor="w", padx=18, pady=(0, 20))
+        
+        aoa_label.pack(anchor="w", padx=18, pady=(0, 4))
         aoa_entry.pack(fill="x", padx=18, pady=(0, 12))
+        
+        # 3. Pack the Mach widgets
+        mach_label.pack(anchor="w", padx=18, pady=(0, 4))
+        mach_entry.pack(fill="x", padx=18, pady=(0, 16))
+
         self.submit_button.pack(fill="x", padx=18, pady=(0, 18))
         status_label.pack(anchor="w", fill="x", padx=18)
 
+        # Bind the Enter key for both entry boxes
         aoa_entry.bind("<Return>", lambda _event: self.submit())
+        mach_entry.bind("<Return>", lambda _event: self.submit())
 
     def get_aoa(self):
         return float(self.aoa_text.get())
+
+    # 4. Helper to get the Mach float
+    def get_mach(self):
+        return float(self.mach_text.get())
 
     def set_ready(self, ready):
         state = "normal" if ready else "disabled"
@@ -115,11 +138,25 @@ class Menu(tk.Frame):
     def submit(self):
         try:
             aoa_float = self.get_aoa()
+            mach_float = self.get_mach()
         except ValueError:
-            self.status_text.set("Enter a numeric AoA, for example 5 or 10.5")
+            self.status_text.set("Error: Enter numeric values.")
             return
-        self.submit_callback(aoa_float)
+            
+        # --- NEW VALIDATION LOGIC ---
+        if not (0.0 <= aoa_float <= 20.0):
+            self.status_text.set("Error: AoA must be between 0 and 20.")
+            return
+            
+        if not (0.68 <= mach_float <= 0.78):
+            self.status_text.set("Error: Mach must be between 0.68 and 0.78.")
+            return
+        # ----------------------------
 
+        # Clear the status text if everything is valid
+        self.status_text.set("Calculating...") 
+        
+        self.submit_callback(aoa_float, mach_float)
 
 class Output(tk.Frame):
     def __init__(self, parent):

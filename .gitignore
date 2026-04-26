@@ -8,3 +8,4 @@ __pycache__/
 *.zip
 *.ZIP
 .DS_Store
+*.pkl

@@ -23,30 +23,30 @@ class SearchSpec:
 
 def build_cp_tuning_specs(random_state: int = 42) -> dict[str, SearchSpec]:
     return {
-        "Polynomial ridge tuned": SearchSpec(
-            estimator=make_pipeline(
-                PolynomialFeatures(include_bias=False),
-                StandardScaler(),
-                Ridge(),
-            ),
-            param_distributions={
-                "polynomialfeatures__degree": [1, 2, 3],
-                "ridge__alpha": [
-                    0.001,
-                    0.003,
-                    0.01,
-                    0.03,
-                    0.1,
-                    0.3,
-                    1.0,
-                    3.0,
-                    10.0,
-                    30.0,
-                    100.0,
-                ],
-            },
-            n_iter=18,
-        ),
+        # "Polynomial ridge tuned": SearchSpec(
+        #     estimator=make_pipeline(
+        #         PolynomialFeatures(include_bias=False),
+        #         StandardScaler(),
+        #         Ridge(),
+        #     ),
+        #     param_distributions={
+        #         "polynomialfeatures__degree": [1, 2, 3],
+        #         "ridge__alpha": [
+        #             0.001,
+        #             0.003,
+        #             0.01,
+        #             0.03,
+        #             0.1,
+        #             0.3,
+        #             1.0,
+        #             3.0,
+        #             10.0,
+        #             30.0,
+        #             100.0,
+        #         ],
+        #     },
+        #     n_iter=18,
+        # ),
         "Random forest tuned": SearchSpec(
             estimator=RandomForestRegressor(random_state=random_state, n_jobs=-1),
             param_distributions={
@@ -58,70 +58,17 @@ def build_cp_tuning_specs(random_state: int = 42) -> dict[str, SearchSpec]:
             },
             n_iter=24,
         ),
-        "Gradient boosting tuned": SearchSpec(
-            estimator=GradientBoostingRegressor(random_state=random_state),
-            param_distributions={
-                "n_estimators": [100, 160, 220, 320],
-                "learning_rate": [0.03, 0.05, 0.08, 0.1],
-                "max_depth": [2, 3, 4],
-                "min_samples_leaf": [1, 2, 4],
-                "subsample": [0.75, 0.9, 1.0],
-            },
-            n_iter=24,
-        ),
-    }
-
-
-def build_tradeoff_tuning_specs(random_state: int = 42) -> dict[str, SearchSpec]:
-    return {
-        "Polynomial ridge tuned": SearchSpec(
-            estimator=make_pipeline(
-                PolynomialFeatures(include_bias=False),
-                StandardScaler(),
-                Ridge(),
-            ),
-            param_distributions={
-                "polynomialfeatures__degree": [1, 2, 3],
-                "ridge__alpha": [
-                    0.001,
-                    0.003,
-                    0.01,
-                    0.03,
-                    0.1,
-                    0.3,
-                    1.0,
-                    3.0,
-                    10.0,
-                    30.0,
-                    100.0,
-                ],
-            },
-            n_iter=18,
-        ),
-        "Random forest tuned": SearchSpec(
-            estimator=RandomForestRegressor(random_state=random_state, n_jobs=-1),
-            param_distributions={
-                "n_estimators": [120, 200, 300, 500],
-                "max_depth": [None, 6, 10, 16],
-                "min_samples_leaf": [1, 2, 4],
-                "min_samples_split": [2, 5, 10],
-                "max_features": [0.6, 0.8, 1.0, "sqrt"],
-            },
-            n_iter=24,
-        ),
-        "Gradient boosting tuned": SearchSpec(
-            estimator=MultiOutputRegressor(
-                GradientBoostingRegressor(random_state=random_state)
-            ),
-            param_distributions={
-                "estimator__n_estimators": [100, 160, 220, 320],
-                "estimator__learning_rate": [0.03, 0.05, 0.08, 0.1],
-                "estimator__max_depth": [2, 3, 4],
-                "estimator__min_samples_leaf": [1, 2, 4],
-                "estimator__subsample": [0.75, 0.9, 1.0],
-            },
-            n_iter=24,
-        ),
+        # "Gradient boosting tuned": SearchSpec(
+        #     estimator=GradientBoostingRegressor(random_state=random_state),
+        #     param_distributions={
+        #         "n_estimators": [100, 160, 220, 320],
+        #         "learning_rate": [0.03, 0.05, 0.08, 0.1],
+        #         "max_depth": [2, 3, 4],
+        #         "min_samples_leaf": [1, 2, 4],
+        #         "subsample": [0.75, 0.9, 1.0],
+        #     },
+        #     n_iter=24,
+        # ),
     }
 
 
