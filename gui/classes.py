@@ -41,7 +41,7 @@ class App(tk.Tk):
 
         self.menu.set_ready(True)
         self.status_text.set("Model ready")
-        self.handle_submit(self.menu.get_aoa())
+        self.handle_submit(self.menu.get_aoa(), self.menu.get_mach())
 
     def handle_submit(self, aoa_float, mach_float):
         if self.cp_model is None:
@@ -58,7 +58,7 @@ class App(tk.Tk):
             return
 
         self.output.update_canvas(result, aoa_float)
-        self.status_text.set(f"Showing AoA = {aoa_float:.2f} deg")
+        self.status_text.set(f"Showing AoA = {aoa_float:.2f} deg, Mach = {mach_float:.3f}")
 
 
 class Menu(tk.Frame):
