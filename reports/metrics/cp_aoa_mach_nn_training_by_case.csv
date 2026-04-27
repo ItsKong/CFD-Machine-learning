@@ -1,0 +1,523 @@
+fold,case,AoA,Freestream_Mach,epochs_used,final_loss,final_val_loss
+1,0.68__-1.0,-1.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 576, dtype: float64",85,0.014202170073986053,0.012457434087991714
+2,0.68__-2.0,-2.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 384, dtype: float64",55,0.017370469868183136,0.015821140259504318
+3,0.68__-3.0,-3.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 192, dtype: float64",51,0.015863575041294098,0.013761757872998714
+4,0.68__-4.0,-4.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 0, dtype: float64",101,0.013137181289494038,0.01308458298444748
+5,0.68__0.0,0.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 768, dtype: float64",71,0.014407141134142876,0.015923023223876953
+6,0.68__1.0,1.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 960, dtype: float64",86,0.014202493242919445,0.014122686348855495
+7,0.68__10.0,10.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 2688, dtype: float64",82,0.013936836272478104,0.012064281851053238
+8,0.68__11.0,11.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 2880, dtype: float64",41,0.0183356124907732,0.016061408445239067
+9,0.68__12.0,12.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 3072, dtype: float64",56,0.016411306336522102,0.015122247859835625
+10,0.68__13.0,13.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 3264, dtype: float64",37,0.018028581514954567,0.017012063413858414
+11,0.68__14.0,14.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 3456, dtype: float64",75,0.014666974544525146,0.011615091934800148
+12,0.68__15.0,15.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 3648, dtype: float64",66,0.015432784333825111,0.011128121986985207
+13,0.68__16.0,16.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 3840, dtype: float64",60,0.01564089022576809,0.015553238801658154
+14,0.68__17.0,17.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 4032, dtype: float64",50,0.017254050821065903,0.019277140498161316
+15,0.68__18.0,18.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 4224, dtype: float64",82,0.01457009557634592,0.012713339179754257
+16,0.68__19.0,19.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 4416, dtype: float64",55,0.015016769990324974,0.011525359936058521
+17,0.68__2.0,2.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 1152, dtype: float64",57,0.01622830703854561,0.013952270150184631
+18,0.68__20.0,20.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 4608, dtype: float64",77,0.01365787722170353,0.01074704248458147
+19,0.68__21.0,21.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 4800, dtype: float64",99,0.013264966197311878,0.011024978011846542
+20,0.68__22.0,22.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 4992, dtype: float64",82,0.013952475041151047,0.01166128646582365
+21,0.68__23.0,23.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 5184, dtype: float64",58,0.016023529693484306,0.016113989055156708
+22,0.68__24.0,24.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 5376, dtype: float64",86,0.013762245886027813,0.012559344060719013
+23,0.68__3.0,3.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 1344, dtype: float64",50,0.01581965945661068,0.013646528124809265
+24,0.68__4.0,4.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 1536, dtype: float64",73,0.014933491125702858,0.014621061272919178
+25,0.68__5.0,5.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 1728, dtype: float64",57,0.015580001287162304,0.014318686909973621
+26,0.68__6.0,6.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 1920, dtype: float64",50,0.016438044607639313,0.014461134560406208
+27,0.68__7.0,7.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 2112, dtype: float64",69,0.015053069218993187,0.014752756804227829
+28,0.68__8.0,8.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 2304, dtype: float64",89,0.014132730662822723,0.014962870627641678
+29,0.68__9.0,9.0,"Freestream_Mach    0.68
+Freestream_Mach    0.68
+Name: 2496, dtype: float64",63,0.015917448326945305,0.012888273224234581
+30,0.72__-1.0,-1.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 11712, dtype: float64",63,0.015303565189242363,0.016141582280397415
+31,0.72__-2.0,-2.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 11520, dtype: float64",89,0.013682523742318153,0.015265877358615398
+32,0.72__-3.0,-3.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 11328, dtype: float64",60,0.01460497360676527,0.01295421551913023
+33,0.72__-4.0,-4.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 11136, dtype: float64",68,0.015029448084533215,0.015042831189930439
+34,0.72__0.0,0.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 11904, dtype: float64",65,0.015769006684422493,0.013259846717119217
+35,0.72__1.0,1.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 12096, dtype: float64",85,0.013666599057614803,0.012067602016031742
+36,0.72__10.0,10.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 13824, dtype: float64",61,0.01609639637172222,0.014849440194666386
+37,0.72__11.0,11.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 14016, dtype: float64",78,0.01416484173387289,0.012359367683529854
+38,0.72__12.0,12.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 14208, dtype: float64",100,0.01294618658721447,0.013065223582088947
+39,0.72__13.0,13.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 14400, dtype: float64",76,0.014654149301350117,0.014177549630403519
+40,0.72__14.0,14.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 14592, dtype: float64",91,0.013262815773487091,0.011485771276056767
+41,0.72__15.0,15.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 14784, dtype: float64",82,0.014598418027162552,0.01407624315470457
+42,0.72__16.0,16.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 14976, dtype: float64",119,0.01169199775904417,0.011432784609496593
+43,0.72__17.0,17.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 15168, dtype: float64",53,0.015898484736680984,0.018059754744172096
+44,0.72__18.0,18.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 15360, dtype: float64",45,0.017917416989803314,0.0175678338855505
+45,0.72__19.0,19.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 15552, dtype: float64",57,0.015744946897029877,0.015469751320779324
+46,0.72__2.0,2.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 12288, dtype: float64",69,0.013859560713171959,0.011880248785018921
+47,0.72__20.0,20.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 15744, dtype: float64",67,0.01591123268008232,0.013417305424809456
+48,0.72__21.0,21.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 15936, dtype: float64",70,0.015189377591013908,0.016517650336027145
+49,0.72__22.0,22.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 16128, dtype: float64",73,0.014645867049694061,0.012866294011473656
+50,0.72__23.0,23.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 16320, dtype: float64",39,0.01803913526237011,0.016931353136897087
+51,0.72__24.0,24.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 16512, dtype: float64",84,0.013875732198357582,0.013354885391891003
+52,0.72__3.0,3.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 12480, dtype: float64",69,0.0142863430082798,0.013721412047743797
+53,0.72__4.0,4.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 12672, dtype: float64",69,0.014702015556395054,0.01289209071546793
+54,0.72__5.0,5.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 12864, dtype: float64",55,0.016381870955228806,0.015433626249432564
+55,0.72__6.0,6.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 13056, dtype: float64",68,0.01490281242877245,0.012785587459802628
+56,0.72__7.0,7.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 13248, dtype: float64",74,0.014721591025590897,0.011110217310488224
+57,0.72__8.0,8.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 13440, dtype: float64",68,0.015464091673493385,0.014442902989685535
+58,0.72__9.0,9.0,"Freestream_Mach    0.72
+Freestream_Mach    0.72
+Name: 13632, dtype: float64",56,0.015898428857326508,0.014660099521279335
+59,0.74__-1.0,-1.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 17280, dtype: float64",67,0.015121474862098694,0.014786707237362862
+60,0.74__-2.0,-2.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 17088, dtype: float64",44,0.017839692533016205,0.014493021182715893
+61,0.74__-3.0,-3.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 16896, dtype: float64",105,0.013211804442107677,0.014635296538472176
+62,0.74__-4.0,-4.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 16704, dtype: float64",68,0.014540455304086208,0.012480453588068485
+63,0.74__0.0,0.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 17472, dtype: float64",67,0.014264184050261974,0.014088631607592106
+64,0.74__1.0,1.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 17664, dtype: float64",105,0.012950798496603966,0.011644748039543629
+65,0.74__10.0,10.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 19392, dtype: float64",99,0.013558185659348965,0.014401303604245186
+66,0.74__11.0,11.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 19584, dtype: float64",67,0.015085779130458832,0.014111150056123734
+67,0.74__12.0,12.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 19776, dtype: float64",52,0.01623176783323288,0.01703391782939434
+68,0.74__13.0,13.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 19968, dtype: float64",50,0.01767781376838684,0.020122328773140907
+69,0.74__14.0,14.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 20160, dtype: float64",70,0.01476986426860094,0.016105856746435165
+70,0.74__15.0,15.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 20352, dtype: float64",47,0.01849844865500927,0.017392685636878014
+71,0.74__16.0,16.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 20544, dtype: float64",58,0.016636108979582787,0.01698659174144268
+72,0.74__17.0,17.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 20736, dtype: float64",52,0.01719655469059944,0.018778599798679352
+73,0.74__18.0,18.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 20928, dtype: float64",69,0.014933723956346512,0.01724652573466301
+74,0.74__19.0,19.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 21120, dtype: float64",50,0.0176151804625988,0.021913116797804832
+75,0.74__2.0,2.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 17856, dtype: float64",62,0.016557836905121803,0.017066355794668198
+76,0.74__20.0,20.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 21312, dtype: float64",59,0.016464706510305405,0.01586613990366459
+77,0.74__21.0,21.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 21504, dtype: float64",79,0.015096466057002544,0.0169010479003191
+78,0.74__22.0,22.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 21696, dtype: float64",48,0.01765257678925991,0.01968991383910179
+79,0.74__23.0,23.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 21888, dtype: float64",40,0.01892770268023014,0.017705539241433144
+80,0.74__24.0,24.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 22080, dtype: float64",68,0.01586834155023098,0.01544401329010725
+81,0.74__3.0,3.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 18048, dtype: float64",92,0.012938273139297962,0.011914120987057686
+82,0.74__4.0,4.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 18240, dtype: float64",40,0.019844908267259598,0.020087379962205887
+83,0.74__5.0,5.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 18432, dtype: float64",49,0.017460210248827934,0.015030472539365292
+84,0.74__6.0,6.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 18624, dtype: float64",74,0.014709005132317543,0.01899103820323944
+85,0.74__7.0,7.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 18816, dtype: float64",78,0.0142666669562459,0.013206862844526768
+86,0.74__8.0,8.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 19008, dtype: float64",70,0.01501542143523693,0.015227099880576134
+87,0.74__9.0,9.0,"Freestream_Mach    0.74
+Freestream_Mach    0.74
+Name: 19200, dtype: float64",68,0.014601747505366802,0.015603720210492611
+88,0.76__-1.0,-1.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 22848, dtype: float64",41,0.018132653087377548,0.022646550089120865
+89,0.76__-2.0,-2.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 22656, dtype: float64",68,0.013977881520986557,0.014457081444561481
+90,0.76__-3.0,-3.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 22464, dtype: float64",59,0.015897423028945923,0.016997259110212326
+91,0.76__-4.0,-4.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 22272, dtype: float64",62,0.01588505320250988,0.019310373812913895
+92,0.76__0.0,0.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 23040, dtype: float64",50,0.015749942511320114,0.01837436482310295
+93,0.76__1.0,1.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 23232, dtype: float64",68,0.01485862210392952,0.01731966808438301
+94,0.76__10.0,10.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 24960, dtype: float64",55,0.016796253621578217,0.015491755679249763
+95,0.76__11.0,11.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 25152, dtype: float64",47,0.01709025911986828,0.01919587329030037
+96,0.76__12.0,12.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 25344, dtype: float64",64,0.015787215903401375,0.014517677947878838
+97,0.76__13.0,13.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 25536, dtype: float64",48,0.017126165330410004,0.014760072343051434
+98,0.76__14.0,14.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 25728, dtype: float64",62,0.016364162787795067,0.015796704217791557
+99,0.76__15.0,15.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 25920, dtype: float64",73,0.015602817758917809,0.015089521184563637
+100,0.76__16.0,16.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 26112, dtype: float64",74,0.014890184625983238,0.01316711213439703
+101,0.76__17.0,17.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 26304, dtype: float64",58,0.01585325039923191,0.012438948266208172
+102,0.76__18.0,18.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 26496, dtype: float64",65,0.01590152271091938,0.012979821301996708
+103,0.76__19.0,19.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 26688, dtype: float64",120,0.012265819124877453,0.01014450378715992
+104,0.76__2.0,2.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 23424, dtype: float64",82,0.014479603618383408,0.016474520787596703
+105,0.76__20.0,20.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 26880, dtype: float64",75,0.015400680713355541,0.016095895320177078
+106,0.76__21.0,21.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 27072, dtype: float64",87,0.014046354219317436,0.015203595161437988
+107,0.76__22.0,22.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 27264, dtype: float64",48,0.01770876906812191,0.016596393659710884
+108,0.76__23.0,23.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 27456, dtype: float64",82,0.013413747772574425,0.013540075160562992
+109,0.76__24.0,24.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 27648, dtype: float64",39,0.01873106136918068,0.020614387467503548
+110,0.76__3.0,3.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 23616, dtype: float64",44,0.018796546384692192,0.018586207181215286
+111,0.76__4.0,4.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 23808, dtype: float64",63,0.015280598774552345,0.01840299367904663
+112,0.76__5.0,5.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 24000, dtype: float64",84,0.013313047587871552,0.013152597472071648
+113,0.76__6.0,6.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 24192, dtype: float64",54,0.01589168794453144,0.015850597992539406
+114,0.76__7.0,7.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 24384, dtype: float64",85,0.014239558018743992,0.017277169972658157
+115,0.76__8.0,8.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 24576, dtype: float64",35,0.01996535062789917,0.019938606768846512
+116,0.76__9.0,9.0,"Freestream_Mach    0.76
+Freestream_Mach    0.76
+Name: 24768, dtype: float64",71,0.014667556621134281,0.015028153546154499
+117,0.78__-1.0,-1.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 28416, dtype: float64",47,0.016846735030412674,0.013473446480929852
+118,0.78__-2.0,-2.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 28224, dtype: float64",83,0.014298302121460438,0.012790612876415253
+119,0.78__-3.0,-3.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 28032, dtype: float64",65,0.015452182851731777,0.017952393740415573
+120,0.78__-4.0,-4.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 27840, dtype: float64",78,0.014436790719628334,0.01476666983217001
+121,0.78__0.0,0.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 28608, dtype: float64",63,0.015704551711678505,0.014813221991062164
+122,0.78__1.0,1.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 28800, dtype: float64",41,0.019678428769111633,0.015721552073955536
+123,0.78__10.0,10.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 30528, dtype: float64",84,0.01364042330533266,0.012668992392718792
+124,0.78__11.0,11.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 30720, dtype: float64",87,0.01454557478427887,0.013537435792386532
+125,0.78__12.0,12.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 30912, dtype: float64",44,0.01852685958147049,0.016368748620152473
+126,0.78__13.0,13.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 31104, dtype: float64",52,0.01667010225355625,0.01290480699390173
+127,0.78__14.0,14.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 31296, dtype: float64",107,0.012023059651255608,0.01133739948272705
+128,0.78__15.0,15.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 31488, dtype: float64",49,0.01682196371257305,0.01693776436150074
+129,0.78__16.0,16.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 31680, dtype: float64",74,0.014053396880626678,0.015965964645147324
+130,0.78__17.0,17.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 31872, dtype: float64",68,0.014945343136787415,0.012524524703621864
+131,0.78__18.0,18.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 32064, dtype: float64",59,0.015030372887849808,0.011211327277123928
+132,0.78__19.0,19.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 32256, dtype: float64",50,0.017100680619478226,0.015735022723674774
+133,0.78__2.0,2.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 28992, dtype: float64",73,0.014872757717967033,0.012434827163815498
+134,0.78__20.0,20.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 32448, dtype: float64",91,0.01294140424579382,0.011385994032025337
+135,0.78__21.0,21.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 32640, dtype: float64",54,0.01576101966202259,0.012303837575018406
+136,0.78__22.0,22.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 32832, dtype: float64",97,0.01350175216794014,0.010502452030777931
+137,0.78__23.0,23.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 33024, dtype: float64",77,0.014022410847246647,0.011255205608904362
+138,0.78__24.0,24.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 33216, dtype: float64",87,0.014157659374177456,0.01492532528936863
+139,0.78__3.0,3.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 29184, dtype: float64",78,0.014471638016402721,0.017110561951994896
+140,0.78__4.0,4.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 29376, dtype: float64",77,0.01440089475363493,0.012701532803475857
+141,0.78__5.0,5.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 29568, dtype: float64",85,0.013868723064661026,0.011530986987054348
+142,0.78__6.0,6.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 29760, dtype: float64",81,0.01448982022702694,0.013280283659696579
+143,0.78__7.0,7.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 29952, dtype: float64",65,0.015274537727236748,0.014002763666212559
+144,0.78__8.0,8.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 30144, dtype: float64",62,0.015444455668330193,0.01203125063329935
+145,0.78__9.0,9.0,"Freestream_Mach    0.78
+Freestream_Mach    0.78
+Name: 30336, dtype: float64",55,0.016549604013562202,0.01439498271793127
+146,0.7__-1.0,-1.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 6144, dtype: float64",50,0.0172498170286417,0.01493442989885807
+147,0.7__-2.0,-2.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 5952, dtype: float64",63,0.015540395863354206,0.01825936697423458
+148,0.7__-3.0,-3.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 5760, dtype: float64",58,0.015925001353025436,0.013382076285779476
+149,0.7__-4.0,-4.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 5568, dtype: float64",89,0.014066988602280617,0.014509809203445911
+150,0.7__0.0,0.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 6336, dtype: float64",64,0.015575382858514786,0.015151589177548885
+151,0.7__1.0,1.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 6528, dtype: float64",31,0.02119646780192852,0.020733125507831573
+152,0.7__10.0,10.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 8256, dtype: float64",61,0.016485625877976418,0.01791277341544628
+153,0.7__11.0,11.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 8448, dtype: float64",54,0.016230210661888123,0.016801323741674423
+154,0.7__12.0,12.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 8640, dtype: float64",55,0.01656605303287506,0.013270636089146137
+155,0.7__13.0,13.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 8832, dtype: float64",73,0.014644927345216274,0.014849967323243618
+156,0.7__14.0,14.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 9024, dtype: float64",71,0.014548045583069324,0.013480843044817448
+157,0.7__15.0,15.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 9216, dtype: float64",87,0.013629752211272717,0.012511961162090302
+158,0.7__16.0,16.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 9408, dtype: float64",69,0.015370436012744904,0.015269291587173939
+159,0.7__17.0,17.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 9600, dtype: float64",69,0.015272383578121662,0.014458341524004936
+160,0.7__18.0,18.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 9792, dtype: float64",81,0.014800640754401684,0.012766535393893719
+161,0.7__19.0,19.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 9984, dtype: float64",120,0.012619988061487675,0.010526706464588642
+162,0.7__2.0,2.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 6720, dtype: float64",61,0.016416151076555252,0.01422516256570816
+163,0.7__20.0,20.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 10176, dtype: float64",110,0.011789416894316673,0.008774371817708015
+164,0.7__21.0,21.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 10368, dtype: float64",57,0.01624692790210247,0.014558324590325356
+165,0.7__22.0,22.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 10560, dtype: float64",48,0.016251079738140106,0.019172724336385727
+166,0.7__23.0,23.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 10752, dtype: float64",79,0.014424136839807034,0.012960397638380527
+167,0.7__24.0,24.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 10944, dtype: float64",62,0.014842749573290348,0.014615848660469055
+168,0.7__3.0,3.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 6912, dtype: float64",54,0.016793031245470047,0.02345382235944271
+169,0.7__4.0,4.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 7104, dtype: float64",50,0.016514189541339874,0.01795678772032261
+170,0.7__5.0,5.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 7296, dtype: float64",49,0.017173921689391136,0.019240209832787514
+171,0.7__6.0,6.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 7488, dtype: float64",59,0.015659401193261147,0.013427719473838806
+172,0.7__7.0,7.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 7680, dtype: float64",66,0.015620644204318523,0.012158457189798355
+173,0.7__8.0,8.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 7872, dtype: float64",91,0.012940292246639729,0.010792733170092106
+174,0.7__9.0,9.0,"Freestream_Mach    0.7
+Freestream_Mach    0.7
+Name: 8064, dtype: float64",35,0.020210834220051765,0.019070472568273544

@@ -1,0 +1,2 @@
+dataset,rf_reference_model,nn_rmse_mean,rf_rmse_mean,winner
+AoA x Mach,Random forest tuned (AoA x Mach),0.0630806177140629,0.03686610637890695,Random forest tuned (AoA x Mach)

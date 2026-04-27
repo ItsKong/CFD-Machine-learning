@@ -15,6 +15,13 @@ The current Cp modeling task is:
 fixed RAE2822 geometry + AoA -> predicted Cp distribution
 ```
 
+There is also an AoA x Mach SU2 extension dataset in the repository. The next
+natural extension is:
+
+```text
+fixed RAE2822 geometry + AoA + Freestream Mach -> predicted Cp distribution
+```
+
 The repository is intentionally focused on reproducible notebook experiments,
 metrics, and report outputs. Optional SU2 dataset generation is kept separate
 from the Kaggle baseline so the two data sources can be compared cleanly.
@@ -145,6 +152,14 @@ jupyter notebook notebooks/03_neural_network_comparison.ipynb
 - `02` validates that the dense SU2 dataset is close enough to Kaggle for an
   extension experiment.
 - `03` compares the neural network against the stronger classical baseline.
+
+For the AoA x Mach extension, the reusable helpers now live in `cfd_ml/cp.py`:
+
+- `load_cp_aoa_mach_modeling_data()`
+- `split_cp_features(..., feature_columns=CP_AOA_MACH_FEATURES, group_column=CP_AOA_MACH_GROUP)`
+
+Use `CP_AOA_MACH_GROUP` so validation holds out entire `(Mach, AoA)` cases
+instead of leaking points from the same CFD case across train and test folds.
 
 ## Results Snapshot
 
